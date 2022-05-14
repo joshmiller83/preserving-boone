@@ -21,4 +21,4 @@ jobs:
         ftp-server: ftp://208.72.105.93:21/
         ftp-username: ${{ secrets.PROD_FTP_USER }}
         ftp-password: ${{ secrets.PROD_FTP_PASSWORD }}
-        local-dir: ./onepage/
+        local-dir: onepage/
