@@ -1,0 +1,24 @@
+name: Production Deploy
+
+on:
+  release:
+    types: [published]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./onepage
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 2
+
+    - name: FTP Deploy to Ori
+      uses: SamKirkland/FTP-Deploy-Action@3.1.1
+      with:
+        ftp-server: sftp://208.72.105.93:2222/
+        ftp-username: ${{ secrets.PROD_FTP_USER }}
+        ftp-password: ${{ secrets.PROD_FTP_PASSWORD }}
+        local-dir: ./onepage/
